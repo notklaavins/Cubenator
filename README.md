@@ -1,2 +1,3 @@
-# Programmat-ras-izstr-des-tehnolo-ija
-Programma
+# Programma
+Spēle tika izstrādāta, izmantojot p5.js
+
