@@ -3,7 +3,7 @@ Spēle tika izstrādāta, izmantojot p5.js
 
 ## Lietošana
 
-Lejupielādēt master kā zip, atarhivēt, palaist html cubenator.html
+Lejupielādēt master kā zip, atarhivēt, palaist cubenator.html
 
 ### Kā spēlēt
 - **SPACE BAR** - lēkt (pieejams trīskāršais lēciens)
