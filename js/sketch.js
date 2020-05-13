@@ -6,19 +6,32 @@ let obst = [];
 let obst2 = [];
 var obstSpeed;
 let bg;
+let button;
+var highscore = localStorage.getItem("highscoreKey");
+var toggleMusicVolume = localStorage.getItem("musicKey");
 
 function setup() {
+
+	document.getElementById('song').volume = toggleMusicVolume;
+
+	button = createButton('Music ON/OFF');
+  	button.position(55, 140);
+  	button.style("border-radius:8px");
+  	button.style("cursor:pointer");
+  	button.style("font-family:Arial");
+  	button.style("outline:none");
+  	button.mousePressed(toggleMute);
 
 	bg = loadImage('https://i.postimg.cc/kMSvVQbV/parallax-dark-space.jpg');
 
     if( (screen.availHeight || screen.height-30) >= window.innerHeight) {
 
       alert("\nPlease use fullscreen mode (F11), then press OK \n \n How to play: \n Spacebar to jump (triple jump is available)" + 
-      "\n Arrows to move left and right \n Enter to restart");
+      "\n Arrows to move left and right \n Enter to restart, DEL to reset highscore");
       window.location.reload();
       
-
     }
+
     frameRate(60);
     background(20);
     createCanvas(windowWidth, windowHeight - 100);
@@ -102,13 +115,23 @@ function keyPressed() {
         ball.jump();
     }
 
+    if (keyCode == DELETE) {
+
+    	var answer = window.confirm("Do you really want to reset your highscore? \n(Changes take place after respawn)");
+
+      	if (answer) {
+          localStorage.removeItem("highscoreKey");
+      	}
+
+    }
+
     if (keyCode == ENTER) {
         window.location.reload();
     }
 
     if (keyCode == ESCAPE) {
 
-      var answer = window.confirm("Exit? \n\nMusic: Eric Skiff - Underclocked - Resistor Anthems \nAvailable at http://EricSkiff.com/music" )
+      var answer = window.confirm("Exit? \n\nMusic: Eric Skiff - Underclocked - Resistor Anthems \nAvailable at http://EricSkiff.com/music" );
 
       if (answer) {
           window.close()
@@ -118,16 +141,44 @@ function keyPressed() {
 }
 
 function end() {
+	
+	if(score > highscore){
+		fill(255, 255, 0);
+    	textSize(30);
+    	textAlign(CENTER);
+		text('!!!NEW HIGHSCORE!!!', width / 2, height / 2 - 45);
+		localStorage.setItem("highscoreKey", score);
+		highscore = localStorage.getItem("highscoreKey");
+	} else if (score == highscore) {
+		fill(255, 255, 0);
+    	textSize(30);
+    	textAlign(CENTER);
+		text('HIGHSCORE REPEATED!', width / 2, height / 2 - 45);
+	} else if (highscore == null) {
+		localStorage.setItem("highscoreKey", 0);
+		highscore = localStorage.getItem("highscoreKey");
+	}
     document.getElementById('gameover').volume = 0.2;
     document.getElementById('gameover').play();
     document.getElementById('song').volume = 0;
     document.getElementById('jump').volume = 0;
     document.getElementById('song').pause();
-      
     noLoop();
     fill(255);
     textSize(24);
     textAlign(CENTER);
     text('GAME OVER', width / 2, height / 2 - 15);
     text('Score: ' + score, width / 2, height / 2 + 15);
+    text('Highscore: ' + highscore, width / 2, height / 2 + 45);
+}
+
+function toggleMute() {
+
+	if (document.getElementById('song').volume != 0){
+		document.getElementById('song').volume = 0;
+		localStorage.setItem("musicKey", document.getElementById('song').volume);
+	} else {
+		document.getElementById('song').volume = 1;
+		localStorage.setItem("musicKey", document.getElementById('song').volume);
+	}
 }
