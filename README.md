@@ -11,4 +11,5 @@ Lejupielādēt master kā zip, atarhivēt, palaist cubenator.html
 - **ENTER** - restartēšana
 - **ESC** - iziet
 - **DEL** - Atjaunot rekordu
+
 Spēles mērķis - Neieskriet stabos un nesadurties ar meteorītiem. Izdzīvot pēc iespējas ilgāk.
