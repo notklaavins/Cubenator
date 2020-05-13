@@ -1,5 +1,5 @@
 # Programma
-Spēle tika izstrādāta, izmantojot p5.js
+Spēle tika izstrādāta, izmantojot p5.js un ir paredzēta Google Chrome pārlūkam.
 
 ## Lietošana
 
