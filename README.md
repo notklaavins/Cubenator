@@ -1,6 +1,3 @@
-# Programma
-Spēle tika izstrādāta, izmantojot p5.js
-
 ## Lietošana
 
 Lejupielādēt master kā zip, atarhivēt, palaist cubenator.html
